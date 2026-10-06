@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kenya Stay — Find Your Stay. Experience Kenya.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,440;0,9..144,560;0,9..144,650;1,9..144,440;1,9..144,560&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --forest:#152A20;
+  --forest-2:#1F3A2C;
+  --forest-3:#28483A;
+  --sand:#E7DFC3;
+  --paper:#F7F3E7;
+  --paper-2:#FDFBF4;
+  --clay:#A3462B;
+  --clay-2:#BF5B3B;
+  --gold:#B6902F;
+  --gold-2:#D4AF5C;
+  --teal:#2B655F;
+  --teal-2:#3C8078;
+  --ink:#1A1C16;
+  --ink-soft:#4A4B41;
+  --line:rgba(26,28,22,0.13);
+  --line-soft:rgba(26,28,22,0.07);
+  --white:#FFFEFA;
+  --danger:#9C3B2E;
+  --ok:#3B6B4A;
+  --warn:#B6902F;
+  --r-sm:3px;
+  --r-md:6px;
+  --shadow-card:0 1px 2px rgba(26,28,22,0.06), 0 8px 24px -12px rgba(26,28,22,0.18);
+  --shadow-pop:0 20px 60px -20px rgba(21,42,32,0.45);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Work Sans', -apple-system, sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:'Fraunces', serif;
+  font-weight:560;
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  margin:0;
+  color:var(--ink);
+}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+img{max-width:100%;display:block;}
+::selection{background:var(--gold-2);color:var(--forest);}
+:focus-visible{outline:2px solid var(--teal-2);outline-offset:2px;}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+@media(max-width:760px){.wrap{padding:0 18px;}}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 22px;border-radius:2px;border:1px solid transparent;
+  font-size:14px;font-weight:600;letter-spacing:0.01em;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--clay);color:var(--white);}
+.btn-primary:hover{background:var(--clay-2);}
+.btn-dark{background:var(--forest);color:var(--paper-2);}
+.btn-dark:hover{background:var(--forest-2);}
+.btn-gold{background:var(--gold);color:var(--white);}
+.btn-gold:hover{background:var(--gold-2);}
+.btn-outline{background:transparent;border-color:var(--line);color:var(--ink);}
+.btn-outline:hover{border-color:var(--ink);}
+.btn-outline-light{background:transparent;border-color:rgba(255,255,255,0.35);color:var(--paper-2);}
+.btn-outline-light:hover{border-color:rgba(255,255,255,0.8);}
+.btn-ghost{background:transparent;color:var(--ink-soft);padding:8px 10px;}
+.btn-ghost:hover{color:var(--ink);}
+.btn-sm{padding:9px 14px;font-size:13px;}
+.btn-block{width:100%;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper-2);
+  border-bottom:1px solid var(--line);
+}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px;}
+.logo{display:flex;align-items:baseline;gap:8px;cursor:pointer;flex-shrink:0;}
+.logo-mark{font-family:'Fraunces',serif;font-weight:650;font-size:22px;letter-spacing:-0.01em;color:var(--forest);}
+.logo-sub{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--clay);font-weight:600;}
+.main-nav{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;}
+.main-nav button{
+  background:none;border:none;padding:9px 14px;font-size:13.5px;font-weight:500;
+  color:var(--ink-soft);border-radius:20px;transition:all .15s;
+}
+.main-nav button:hover{color:var(--ink);background:var(--sand);}
+.main-nav button.active{color:var(--forest);background:var(--sand);font-weight:600;}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.currency-select{
+  border:1px solid var(--line);background:var(--white);padding:9px 10px;border-radius:2px;
+  font-size:13px;font-weight:600;color:var(--ink-soft);
+}
+.hamburger-btn{display:none;background:none;border:1px solid var(--line);width:38px;height:38px;border-radius:2px;font-size:16px;color:var(--forest);}
+.mobile-nav{display:none;flex-direction:column;gap:2px;padding:12px 32px 18px;border-top:1px solid var(--line);}
+.mobile-nav button{background:none;border:none;text-align:left;padding:11px 8px;font-size:14.5px;font-weight:500;color:var(--ink-soft);border-radius:3px;}
+.mobile-nav button.active{color:var(--forest);font-weight:700;background:var(--sand);}
+.mobile-nav button.btn-primary{background:var(--clay);color:var(--white);text-align:center;font-weight:600;}
+@media(max-width:900px){
+  .main-nav{display:none;}
+  .hamburger-btn{display:block;}
+  .hide-mobile-cta{display:none;}
+  .mobile-nav{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{background:var(--forest);color:var(--paper-2);position:relative;overflow:hidden;}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(212,175,92,0.16), transparent 45%),
+    radial-gradient(circle at 15% 90%, rgba(60,128,120,0.18), transparent 40%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;padding:76px 0 0;align-items:center;}
+@media(max-width:980px){.hero-inner{grid-template-columns:1fr;padding-top:48px;gap:32px;}}
+.eyebrow-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--gold-2);font-weight:600;letter-spacing:0.04em;margin-bottom:22px;}
+.eyebrow-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-2);}
+.hero h1{font-size:56px;color:var(--white);max-width:640px;}
+@media(max-width:640px){.hero h1{font-size:36px;}}
+.hero .sub{margin-top:22px;font-size:18px;color:rgba(247,243,231,0.78);max-width:480px;line-height:1.6;}
+.hero-photo-stack{position:relative;height:420px;}
+.photo-block{
+  position:absolute;border-radius:3px;overflow:hidden;
+  display:flex;align-items:flex-end;padding:14px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+}
+.photo-block .plabel{font-size:11px;color:rgba(255,255,255,0.92);font-weight:600;background:rgba(21,42,32,0.55);padding:4px 8px;border-radius:2px;backdrop-filter:blur(2px);}
+.demo-badge{
+  position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;letter-spacing:0.06em;
+  background:rgba(21,42,32,0.75);color:var(--gold-2);padding:3px 6px;border-radius:2px;
+}
+@media(max-width:980px){.hero-photo-stack{height:280px;}}
+
+/* search card */
+.search-card{
+  background:var(--white);border-radius:4px;box-shadow:var(--shadow-pop);
+  padding:22px;margin-top:44px;position:relative;z-index:2;
+  display:grid;grid-template-columns:1.3fr 1fr 1fr 0.9fr auto;gap:0;
+}
+.search-field{padding:6px 20px;border-right:1px solid var(--line);}
+.search-field:first-child{padding-left:2px;}
+.search-field:last-of-type{border-right:none;}
+.search-field label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600;margin-bottom:5px;}
+.search-field input,.search-field select{
+  border:none;background:none;padding:0;font-size:14.5px;color:var(--ink);width:100%;font-family:inherit;font-weight:500;
+}
+.search-field input:focus,.search-field select:focus{outline:none;}
+.search-card .btn{margin-left:14px;padding:0 26px;}
+@media(max-width:980px){.search-card{grid-template-columns:1fr 1fr;gap:14px;padding:20px;}.search-field{border-right:none;border-bottom:1px solid var(--line);padding:10px 4px;}.search-card .btn{grid-column:1/-1;margin:6px 0 0;padding:14px;}}
+
+/* ============ SECTION HEADERS ============ */
+.section{padding:76px 0;}
+.section-tight{padding:52px 0;}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;}
+.section-head h2{font-size:32px;}
+.section-head .sub{color:var(--ink-soft);margin-top:8px;font-size:15px;max-width:480px;}
+
+/* ============ DESTINATIONS ============ */
+.dest-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
+.dest-card{
+  flex:0 0 auto;width:220px;height:280px;border-radius:3px;position:relative;overflow:hidden;
+  cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;
+  transition:transform .2s ease;
+}
+.dest-card:hover{transform:translateY(-4px);}
+.dest-card .dname{font-family:'Fraunces',serif;font-size:22px;color:var(--white);font-weight:560;}
+.dest-card .dmeta{color:rgba(255,255,255,0.8);font-size:12px;margin-top:4px;}
+.dest-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.55) 100%);}
+.dest-card>*{position:relative;z-index:1;}
+
+/* ============ PROPERTY CLASS CARDS ============ */
+.class-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:860px){.class-grid{grid-template-columns:1fr;}}
+.class-card{
+  background:var(--white);border:1px solid var(--line);border-left:4px solid var(--sand);
+  padding:30px 26px;border-radius:2px;
+}
+.class-card.comfort{border-left-color:var(--teal-2);}
+.class-card.premium{border-left-color:var(--gold);background:var(--forest);}
+.class-card.premium h3,.class-card.premium p,.class-card.premium li{color:var(--paper-2);}
+.class-card.premium .from-price{color:var(--gold-2);}
+.class-card h3{font-size:22px;margin-bottom:6px;}
+.class-card .tagline{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px;}
+.class-card ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:8px;}
+.class-card li{font-size:13.5px;color:var(--ink-soft);display:flex;align-items:center;gap:8px;}
+.class-card li::before{content:"";width:4px;height:4px;background:currentColor;border-radius:50%;flex-shrink:0;}
+.from-price{font-family:'Fraunces',serif;font-size:20px;font-weight:560;color:var(--forest);}
+.from-price small{font-size:12px;font-weight:500;color:var(--ink-soft);}
+
+/* ============ HOW IT WORKS ============ */
+.steps-row{display:flex;gap:0;counter-reset:step;}
+.step-item{flex:1;position:relative;padding-right:24px;}
+.step-item:not(:last-child)::after{content:"";position:absolute;top:20px;right:0;width:24px;height:1px;background:var(--line);}
+.step-num{font-family:'Fraunces',serif;font-size:15px;color:var(--clay);font-weight:650;margin-bottom:10px;}
+.step-item h4{font-size:15.5px;margin-bottom:6px;}
+.step-item p{font-size:13px;color:var(--ink-soft);}
+@media(max-width:860px){.steps-row{flex-direction:column;gap:24px;}.step-item::after{display:none;}}
+
+/* ============ CONCIERGE CTA ============ */
+.concierge-band{background:var(--forest-3);color:var(--paper-2);border-radius:4px;padding:44px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;}
+@media(max-width:860px){.concierge-band{grid-template-columns:1fr;padding:32px 24px;}}
+.concierge-band h2{color:var(--white);font-size:28px;}
+.concierge-band p{color:rgba(247,243,231,0.75);margin-top:10px;max-width:440px;}
+.concierge-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* ============ FOOTER ============ */
+.site-footer{background:var(--forest);color:rgba(247,243,231,0.65);padding:56px 0 28px;margin-top:40px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-grid h5{color:var(--paper-2);font-size:12px;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px;font-weight:600;}
+.footer-grid a{display:block;font-size:13.5px;padding:5px 0;color:rgba(247,243,231,0.65);}
+.footer-grid a:hover{color:var(--gold-2);}
+.footer-bottom{border-top:1px solid rgba(247,243,231,0.15);margin-top:40px;padding-top:22px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+/* ============ CARDS / BADGES generic ============ */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 9px;border-radius:20px;}
+.badge-verified{background:rgba(59,107,74,0.12);color:var(--ok);}
+.badge-class-regular{background:var(--sand);color:var(--ink);}
+.badge-class-comfort{background:rgba(60,128,120,0.14);color:var(--teal);}
+.badge-class-premium{background:rgba(182,144,47,0.16);color:var(--gold);}
+.badge-demo{background:rgba(163,70,43,0.1);color:var(--clay);}
+
+/* ============ PROPERTY GRID CARDS ============ */
+.prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px;}
+.prop-card{background:var(--white);border:1px solid var(--line);border-radius:3px;overflow:hidden;box-shadow:var(--shadow-card);transition:transform .15s;cursor:pointer;}
+.prop-card:hover{transform:translateY(-3px);}
+.prop-photo{height:180px;position:relative;}
+.prop-body{padding:16px 16px 18px;}
+.prop-top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.prop-name{font-family:'Fraunces',serif;font-weight:560;font-size:16.5px;line-height:1.25;}
+.prop-loc{color:var(--ink-soft);font-size:12.5px;margin-top:3px;}
+.prop-rating{font-size:12.5px;font-weight:600;white-space:nowrap;}
+.prop-meta{display:flex;gap:12px;font-size:12px;color:var(--ink-soft);margin:10px 0;}
+.prop-price-row{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line-soft);padding-top:12px;margin-top:4px;}
+.prop-price{font-family:'Fraunces',serif;font-size:17px;font-weight:560;color:var(--forest);}
+.prop-price small{font-size:11.5px;font-weight:500;color:var(--ink-soft);}
+.compare-check{position:absolute;top:10px;left:10px;z-index:2;background:rgba(255,254,250,0.92);padding:5px 9px;border-radius:20px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:6px;}
+
+/* generic photo placeholder gradients used for demo images */
+.ph{position:relative;width:100%;height:100%;background-size:cover;background-position:center;}
+
+/* ============ FILTER SIDEBAR ============ */
+.search-layout{display:grid;grid-template-columns:270px 1fr;gap:32px;align-items:start;}
+@media(max-width:900px){.search-layout{grid-template-columns:1fr;}}
+.filter-panel{background:var(--white);border:1px solid var(--line);border-radius:3px;padding:22px;position:sticky;top:96px;}
+.filter-group{margin-bottom:22px;}
+.filter-group:last-child{margin-bottom:0;}
+.filter-group h4{font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-bottom:10px;font-weight:600;}
+.filter-chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{border:1px solid var(--line);background:var(--white);padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:500;color:var(--ink-soft);}
+.chip.active{background:var(--forest);color:var(--white);border-color:var(--forest);}
+.check-row{display:flex;align-items:center;gap:8px;font-size:13px;padding:5px 0;color:var(--ink-soft);}
+.range-row{display:flex;gap:8px;}
+.range-row input{width:100%;border:1px solid var(--line);padding:8px 10px;border-radius:2px;font-size:13px;font-family:inherit;}
+.select-basic{width:100%;border:1px solid var(--line);padding:9px 10px;border-radius:2px;font-size:13px;font-family:inherit;background:var(--white);}
+
+/* ============ TABS ============ */
+.tabbar{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:26px;overflow-x:auto;}
+.tabbar button{background:none;border:none;padding:12px 4px;margin-right:22px;font-size:13.5px;font-weight:600;color:var(--ink-soft);border-bottom:2px solid transparent;white-space:nowrap;}
+.tabbar button.active{color:var(--forest);border-bottom-color:var(--clay);}
+
+/* ============ PROPERTY DETAIL ============ */
+.detail-layout{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;}
+@media(max-width:980px){.detail-layout{grid-template-columns:1fr;}}
+.gallery{display:grid;grid-template-columns:2fr 1fr;gap:8px;height:420px;border-radius:4px;overflow:hidden;margin-bottom:8px;}
+.gallery .main-shot{position:relative;}
+.gallery .side-shots{display:grid;grid-template-rows:1fr 1fr;gap:8px;}
+.gallery .side-shots .ph{position:relative;}
+.gallery .plabel{position:absolute;bottom:10px;left:10px;font-size:11.5px;color:#fff;background:rgba(21,42,32,0.55);padding:4px 9px;border-radius:2px;}
+.view-all-photos{position:absolute;bottom:10px;right:10px;background:var(--white);padding:7px 12px;border-radius:2px;font-size:12px;font-weight:600;border:1px solid var(--line);}
+@media(max-width:640px){.gallery{grid-template-columns:1fr;height:auto;}.gallery .side-shots{display:none;}.gallery .main-shot{height:260px;}}
+
+.booking-panel{position:sticky;top:96px;background:var(--white);border:1px solid var(--line);border-radius:4px;padding:22px;box-shadow:var(--shadow-card);}
+.bp-price{font-family:'Fraunces',serif;font-size:26px;font-weight:560;}
+.bp-price small{font-size:13px;font-weight:500;color:var(--ink-soft);}
+.bp-row{display:flex;justify-content:space-between;padding:9px 0;font-size:13.5px;border-bottom:1px solid var(--line-soft);}
+.bp-row.total{border-bottom:none;border-top:1px solid var(--line);margin-top:6px;padding-top:14px;font-weight:700;font-size:15px;}
+.bp-total-price{font-family:'Fraunces',serif;}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:2px;}
+.stepper button{width:34px;height:34px;background:none;border:none;font-size:16px;color:var(--ink);}
+.stepper span{flex:1;text-align:center;font-weight:600;font-size:14px;}
+.field-label{font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);font-weight:600;margin-bottom:6px;display:block;}
+.radio-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-soft);cursor:pointer;}
+.radio-row:last-child{border-bottom:none;}
+.radio-row .rname{font-weight:600;font-size:13.5px;}
+.radio-row .rdesc{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+.radio-row .rprice{margin-left:auto;font-size:13px;font-weight:600;white-space:nowrap;}
+.custom-radio,.custom-check{width:17px;height:17px;border:1.5px solid var(--line);border-radius:50%;flex-shrink:0;margin-top:2px;position:relative;}
+.custom-check{border-radius:3px;}
+.custom-radio.checked::after{content:"";position:absolute;inset:3px;background:var(--clay);border-radius:50%;}
+.custom-check.checked{background:var(--clay);border-color:var(--clay);}
+.custom-check.checked::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;}
+
+.amenity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.amenity-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:8px 0;}
+.verify-grid{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px;}
+.verify-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ok);font-weight:600;}
+
+.map-box{height:260px;border-radius:3px;background:var(--sand);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;border:1px solid var(--line);}
+.map-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:32px 32px;opacity:.6;}
+.map-pin{width:14px;height:14px;background:var(--clay);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 0 0 5px rgba(163,70,43,0.18);position:relative;z-index:1;}
+
+.review-item{border-bottom:1px solid var(--line-soft);padding:18px 0;}
+.review-item:first-child{padding-top:0;}
+.review-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.avatar-circ{width:34px;height:34px;border-radius:50%;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;font-family:'Fraunces',serif;}
+.rating-bars{display:flex;flex-direction:column;gap:8px;}
+.rating-bar-row{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft);}
+.rating-bar-row .track{flex:1;height:5px;background:var(--sand);border-radius:4px;overflow:hidden;}
+.rating-bar-row .fill{height:100%;background:var(--forest);border-radius:4px;}
+
+/* ============ MODAL ============ */
+.modal-overlay{position:fixed;inset:0;background:rgba(21,24,18,0.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;}
+.modal-box{background:var(--white);border-radius:4px;max-width:520px;width:100%;max-height:88vh;overflow-y:auto;padding:30px;position:relative;box-shadow:var(--shadow-pop);}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--sand);border:none;width:30px;height:30px;border-radius:50%;font-size:15px;color:var(--ink-soft);}
+
+/* ============ FORMS ============ */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:520px){.form-grid{grid-template-columns:1fr;}}
+.form-field{display:flex;flex-direction:column;gap:6px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-size:12px;font-weight:600;color:var(--ink-soft);}
+.form-field input,.form-field select,.form-field textarea{
+  border:1px solid var(--line);padding:11px 12px;border-radius:2px;font-size:13.5px;font-family:inherit;background:var(--white);color:var(--ink);
+}
+.form-field textarea{resize:vertical;min-height:80px;}
+
+/* ============ VOUCHER ============ */
+.voucher{background:var(--white);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-card);}
+.voucher-head{background:var(--forest);color:var(--paper-2);padding:26px 30px;display:flex;justify-content:space-between;align-items:center;}
+.voucher-body{padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;}
+@media(max-width:560px){.voucher-body{grid-template-columns:1fr;}}
+.vfield{border-bottom:1px solid var(--line-soft);padding-bottom:12px;}
+.vfield .vlabel{font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);font-weight:600;margin-bottom:5px;}
+.vfield .vval{font-size:15px;font-weight:600;}
+.qr-demo{width:100px;height:100px;background:
+  repeating-conic-gradient(var(--forest) 0% 25%, transparent 0% 50%) 0 0/16px 16px;
+  border:6px solid #fff;box-shadow:0 0 0 1px var(--line);flex-shrink:0;}
+
+/* ============ DASHBOARD ============ */
+.dash-shell{display:grid;grid-template-columns:220px 1fr;min-height:70vh;}
+@media(max-width:860px){.dash-shell{grid-template-columns:1fr;}}
+.dash-side{background:var(--forest);color:rgba(247,243,231,0.8);padding:26px 18px;}
+.dash-side .dtitle{color:var(--gold-2);font-size:11px;text-transform:uppercase;letter-spacing:0.07em;font-weight:700;margin:18px 0 8px;padding:0 10px;}
+.dash-side button{display:block;width:100%;text-align:left;background:none;border:none;color:inherit;padding:9px 10px;border-radius:3px;font-size:13.5px;margin-bottom:2px;}
+.dash-side button:hover{background:rgba(255,255,255,0.06);}
+.dash-side button.active{background:rgba(255,255,255,0.1);color:#fff;font-weight:600;}
+.dash-main{padding:32px;background:var(--paper-2);}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--line);border-radius:3px;padding:18px;}
+.kpi-card .kval{font-family:'Fraunces',serif;font-size:26px;font-weight:560;}
+.kpi-card .klabel{font-size:12px;color:var(--ink-soft);margin-top:4px;}
+.kpi-card .kdelta{font-size:11.5px;margin-top:6px;font-weight:600;}
+.kpi-card .kdelta.up{color:var(--ok);}
+.kpi-card .kdelta.down{color:var(--danger);}
+
+.kanban{display:grid;grid-auto-flow:column;grid-auto-columns:230px;gap:14px;overflow-x:auto;padding-bottom:10px;}
+.kan-col{background:var(--sand);border-radius:4px;padding:12px;}
+.kan-col h5{font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;}
+.kan-card{background:var(--white);border-radius:3px;padding:11px;margin-bottom:8px;border:1px solid var(--line-soft);box-shadow:var(--shadow-card);}
+.kan-card .kname{font-weight:600;font-size:13px;}
+.kan-card .kmeta{font-size:11.5px;color:var(--ink-soft);margin-top:4px;}
+
+.panel{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:24px;margin-bottom:24px;}
+.panel h3{font-size:18px;margin-bottom:4px;}
+.panel .phint{color:var(--ink-soft);font-size:13px;margin-bottom:18px;}
+
+.match-card{border:1px solid var(--line);border-radius:3px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;}
+.match-score{font-family:'Fraunces',serif;font-size:22px;font-weight:650;color:var(--ok);flex-shrink:0;}
+.match-reasons{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px;}
+.match-reasons li{font-size:11.5px;background:var(--sand);padding:4px 9px;border-radius:20px;color:var(--ink-soft);}
+
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:760px){.calc-grid{grid-template-columns:1fr;}}
+.calc-out-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:13.5px;}
+.calc-out-row.final{border-bottom:none;border-top:1px solid var(--line);padding-top:14px;margin-top:4px;}
+.calc-out-row.final .v{font-family:'Fraunces',serif;font-size:18px;font-weight:650;}
+.calc-out-row.profit .v{color:var(--ok);font-weight:700;}
+
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-row .blabel{width:130px;font-size:12.5px;color:var(--ink-soft);flex-shrink:0;}
+.bar-row .btrack{flex:1;background:var(--sand);border-radius:2px;height:9px;overflow:hidden;}
+.bar-row .bfill{height:100%;background:var(--forest);}
+.bar-row .bval{width:70px;text-align:right;font-size:12.5px;font-weight:600;flex-shrink:0;}
+
+.table-simple{width:100%;border-collapse:collapse;font-size:13.5px;}
+.table-simple th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line);font-weight:700;}
+.table-simple td{padding:12px;border-bottom:1px solid var(--line-soft);}
+.status-pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;}
+.status-active{background:rgba(59,107,74,0.12);color:var(--ok);}
+.status-pending{background:rgba(182,144,47,0.14);color:var(--gold);}
+
+.donut-wrap{display:flex;align-items:center;gap:20px;}
+.donut{width:140px;height:140px;border-radius:50%;flex-shrink:0;}
+.donut-legend{display:flex;flex-direction:column;gap:8px;font-size:13px;}
+.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:8px;}
+
+/* ============ WHATSAPP FAB ============ */
+.wa-fab{
+  position:fixed;bottom:24px;right:24px;z-index:150;
+  background:#25865b;color:#fff;border-radius:30px;padding:14px 20px;
+  display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px -8px rgba(0,0,0,0.4);
+  font-weight:600;font-size:13.5px;border:none;
+}
+.wa-fab:hover{background:#1f7a51;}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--forest);color:#fff;padding:14px 22px;border-radius:3px;font-size:13.5px;font-weight:500;
+  z-index:300;box-shadow:var(--shadow-pop);display:flex;align-items:center;gap:10px;
+}
+
+/* ============ MISC ============ */
+.hr-line{height:1px;background:var(--line);margin:30px 0;}
+.muted{color:var(--ink-soft);}
+.center-empty{text-align:center;padding:60px 20px;color:var(--ink-soft);}
+.pill-tab{display:inline-flex;border:1px solid var(--line);border-radius:24px;overflow:hidden;}
+.pill-tab button{padding:9px 18px;background:none;border:none;font-size:13px;font-weight:600;color:var(--ink-soft);}
+.pill-tab button.active{background:var(--forest);color:#fff;}
+.icon-inline{width:15px;height:15px;flex-shrink:0;}
+.disc-note{font-size:11.5px;color:var(--ink-soft);background:var(--sand);padding:10px 14px;border-radius:3px;margin-top:14px;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* =========================================================================
+   KENYA STAY — premium holiday accommodation brokerage prototype
+   Single-file vanilla JS SPA. All data below is clearly-labelled DEMO data,
+   not live inventory, live prices or real bookings.
+   ========================================================================= */
+
+/* ---------------------------- UTILITIES -------------------------------- */
+const $app = document.getElementById('app');
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function uid(){ return Math.random().toString(36).slice(2,8).toUpperCase(); }
+function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+
+const RATES = { KES:1, USD:1/129, GBP:1/163, EUR:1/140 };
+const SYMS  = { KES:'KSh', USD:'$', GBP:'£', EUR:'€' };
+function money(kes, currency){
+  currency = currency || state.currency;
+  const v = kes * RATES[currency];
+  const dec = currency === 'KES' ? 0 : 0;
+  return SYMS[currency] + ' ' + Math.round(v).toLocaleString('en-US', {maximumFractionDigits: dec});
+}
+
+// deterministic "photo" gradients standing in for real property photography.
+// Section 8 of the brief requires real images be prioritized and clearly
+// labelled DEMO where unavailable — every photo block below carries a DEMO tag.
+const PALETTES = [
+  ['#2B655F','#152A20'], // ocean teal -> forest
+  ['#A3462B','#5c2417'], // clay sunset
+  ['#B6902F','#6b4f13'], // savanna gold
+  ['#3C8078','#1F3A2C'], // teal light
+  ['#BF5B3B','#7a2f18'], // brick
+  ['#5c7a52','#28483A'], // bush green
+  ['#8a6a2e','#3d2e10'], // dry gold
+  ['#4a6b74','#1c2f33'], // dusk blue-grey
+];
+function gradFor(seed, i){
+  const idx = (Math.abs(hash(seed)) + i) % PALETTES.length;
+  const [a,b] = PALETTES[idx];
+  const angle = 135 + (i*23 % 90);
+  return `linear-gradient(${angle}deg, ${a}, ${b})`;
+}
+function hash(s){ let h=0; for(let i=0;i<s.length;i++){ h = (h<<5)-h + s.charCodeAt(i); h|=0; } return h; }
+
+function photoBlock(seed, i, label, opts){
+  opts = opts || {};
+  const style = `background:${gradFor(seed,i)};`;
+  return `<div class="ph" style="${style}">
+    <span class="demo-badge">DEMO IMAGE</span>
+    ${label ? `<span class="plabel" style="position:absolute;bottom:10px;left:10px;">${esc(label)}</span>` : ''}
+  </div>`;
+}
+
+function mapsLink(query){
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + ', Kenya')}`;
+}
+function waLink(text){
+  return `https://wa.me/254700000000?text=${encodeURIComponent(text)}`;
+}
+function stars(rating){
+  const full = Math.round(rating);
+  return '★'.repeat(full) + '☆'.repeat(5-full);
+}
+function todayPlus(days){
+  const d = new Date(); d.setDate(d.getDate()+days);
+  return d.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+}
+
+/* ------------------------------ DATA ------------------------------------ */
+
+const DESTINATIONS = [
+  {id:'diani', name:'Diani Beach', region:'Coast', props:14, note:'White sand & barefoot luxury'},
+  {id:'mombasa', name:'Mombasa', region:'Coast', props:22, note:'Old Town, Nyali & the harbour'},
+  {id:'nairobi', name:'Nairobi', region:'Capital', props:41, note:'City stays & business bases'},
+  {id:'naivasha', name:'Naivasha', region:'Rift Valley', props:9, note:'Lakeside cottages & hippos'},
+  {id:'nanyuki', name:'Nanyuki', region:'Mount Kenya', props:8, note:'Views of the mountain'},
+  {id:'watamu', name:'Watamu', region:'Coast', props:11, note:'Marine park & coral cottages'},
+  {id:'malindi', name:'Malindi', region:'Coast', props:10, note:'Historic town, quiet shores'},
+  {id:'maasai-mara', name:'Maasai Mara', region:'Rift Valley', props:6, note:'Camps on the migration route'},
+  {id:'amboseli', name:'Amboseli', region:'Rift Valley', props:5, note:'Kilimanjaro on the horizon'},
+  {id:'lamu', name:'Lamu', region:'Coast', props:7, note:'Swahili architecture & dhows'},
+];
+
+const EXPERIENCES = [
+  {id:'wasini', name:'Wasini Island & dolphin excursion', loc:'Diani / Shimoni', price:8500, dur:'Full day', provider:'Pilli Pipa Dhow Safaris'},
+  {id:'mara-game', name:'Maasai Mara game drive', loc:'Maasai Mara', price:12000, dur:'Half day', provider:'Mara Verified Guides Co-op'},
+  {id:'cultural', name:'Maasai cultural village visit', loc:'Maasai Mara / Amboseli', price:2500, dur:'2 hours', provider:'Local community trust'},
+  {id:'old-town', name:'Mombasa Old Town walking tour', loc:'Mombasa', price:3000, dur:'3 hours', provider:'Coastal Heritage Tours'},
+  {id:'watersports', name:'Watamu snorkelling & water sports', loc:'Watamu', price:4500, dur:'Half day', provider:'Watamu Marine Adventures'},
+  {id:'naivasha-boat', name:'Lake Naivasha boat ride', loc:'Naivasha', price:3500, dur:'2 hours', provider:'Lakeside Boat Operators'},
+];
+
+// meal plan catalogue — a property only "offers" plans listed in its own mealPlans[]
+const MEAL_PLAN_LIB = {
+  room:   {code:'room',  name:'Room Only',       desc:'Accommodation only, no meals included.', pppn:0},
+  bb:     {code:'bb',    name:'Bed & Breakfast', desc:'Accommodation plus breakfast daily.',     pppn:1200},
+  hb:     {code:'hb',    name:'Half Board',      desc:'Breakfast and dinner included.',          pppn:2800},
+  fb:     {code:'fb',    name:'Full Board',      desc:'Breakfast, lunch and dinner included.',   pppn:4200},
+  ai:     {code:'ai',    name:'All-Inclusive',   desc:'Meals, selected drinks and on-site activities.', pppn:6500},
+};
+
+const PROPERTIES = [
+  {
+    id:'diani-beachfront-villa', name:'Diani Beachfront Villa', cls:'premium', dest:'diani',
+    price:45000, rating:4.9, reviews:87, guests:8, bedrooms:4, bathrooms:4,
+    amenities:['Private pool','Ocean view','Private chef','Daily housekeeping','Airport transfer','Wi-Fi','Backup generator','Beach access','Air conditioning','Security'],
+    mealPlans:['room','bb','hb','fb','ai'],
+    tags:['family','romantic','group'],
+    desc:'A four-bedroom villa set directly on Diani\u2019s white sand, with a private pool facing the Indian Ocean, a resident chef and daily housekeeping. Handpicked and personally inspected by our concierge team.',
+    rules:['No smoking indoors','Check-in from 2pm, check-out by 10am','Quiet hours after 10pm','Pets on request only'],
+    host:'Amani Coastal Properties', verified:{property:true, photos:true, location:true, host:true},
+    verifiedDate:'12 Aug 2026',
+    ratingBreak:{cleanliness:4.9, location:4.8, accuracy:4.9, communication:5.0, value:4.7},
+  },
+  {
+    id:'kilimani-modern-apartment', name:'Kilimani Modern Apartment', cls:'comfort', dest:'nairobi',
+    price:9500, rating:4.7, reviews:142, guests:4, bedrooms:2, bathrooms:2,
+    amenities:['Smart TV','Wi-Fi','Full kitchen','Parking','Workspace','Security','Balcony','Gym access'],
+    mealPlans:['room','bb'],
+    tags:['business','family'],
+    desc:'A modern two-bedroom apartment in Kilimani, five minutes from Nairobi\u2019s business district. Ideal for corporate travellers and short city breaks.',
+    rules:['No parties or events','Check-in from 1pm, check-out by 11am','Valid ID required at check-in'],
+    host:'Nairobi Urban Stays', verified:{property:true, photos:true, location:true, host:true},
+    verifiedDate:'02 Jul 2026',
+    ratingBreak:{cleanliness:4.8, location:4.9, accuracy:4.6, communication:4.7, value:4.6},
+  },
+  {
+    id:'watamu-coral-cottage', name:'Watamu Coral Cottage', cls:'comfort', dest:'watamu',
+    price:12000, rating:4.6, reviews:58, guests:5, bedrooms:2, bathrooms:2,
+    amenities:['Swimming pool','Wi-Fi','Kitchen','Air conditioning','Garden','Beach access (500m)','Parking'],
+    mealPlans:['room','bb','hb'],
+    tags:['family','romantic'],
+    desc:'A coral-stone cottage tucked in a quiet Watamu garden, a short walk from the marine park beaches. Comfortable, breezy and close to snorkelling spots.',
+    rules:['No smoking indoors','Check-in from 2pm, check-out by 10am'],
+    host:'Watamu Garden Retreats', verified:{property:true, photos:true, location:true, host:false},
+    verifiedDate:'—',
+    ratingBreak:{cleanliness:4.7, location:4.5, accuracy:4.6, communication:4.6, value:4.7},
+  },
+  {
+    id:'naivasha-lakeside-cottage', name:'Naivasha Lakeside Cottage', cls:'regular', dest:'naivasha',
+    price:5000, rating:4.4, reviews:63, guests:4, bedrooms:2, bathrooms:1,
+    amenities:['Wi-Fi','Basic kitchen','Bathroom','Security','Garden','Lake view'],
+    mealPlans:['room'],
+    tags:['family','group'],
+    desc:'A simple, clean lakeside cottage a short stroll from Lake Naivasha, popular with families and small groups looking for a relaxed budget getaway.',
+    rules:['No loud music after 9pm','Check-in from 2pm, check-out by 10am'],
+    host:'Rift Valley Homestays', verified:{property:true, photos:false, location:true, host:true},
+    verifiedDate:'19 May 2026',
+    ratingBreak:{cleanliness:4.3, location:4.6, accuracy:4.4, communication:4.4, value:4.6},
+  },
+  {
+    id:'mara-safari-suite', name:'Maasai Mara Safari Camp Suite', cls:'premium', dest:'maasai-mara',
+    price:38000, rating:5.0, reviews:34, guests:2, bedrooms:1, bathrooms:1,
+    amenities:['Private veranda','Full board included','Guided game drives','Bush shower','Solar power','Security escort','Laundry service'],
+    mealPlans:['fb','ai'],
+    tags:['romantic','honeymoon'],
+    desc:'A canvas-and-timber suite on the edge of the Mara reserve, run by a community-owned camp with resident guides and daily game drives.',
+    rules:['Guided escort required after dark','No open flames outside designated areas'],
+    host:'Mara Verified Guides Co-op', verified:{property:true, photos:true, location:true, host:true},
+    verifiedDate:'28 Jun 2026',
+    ratingBreak:{cleanliness:5.0, location:5.0, accuracy:4.9, communication:5.0, value:4.8},
+  },
+  {
+    id:'nanyuki-mtkenya-house', name:'Nanyuki Mt Kenya View House', cls:'comfort', dest:'nanyuki',
+    price:14500, rating:4.8, reviews:41, guests:6, bedrooms:3, bathrooms:2,
+    amenities:['Fireplace','Wi-Fi','Kitchen','Mountain view','Parking','Garden','Workspace'],
+    mealPlans:['room','bb','hb'],
+    tags:['family','group'],
+    desc:'A timber house with uninterrupted views of Mount Kenya, a working fireplace for cool evenings, and a garden built for slow mornings.',
+    rules:['Check-in from 3pm, check-out by 10am','No smoking indoors'],
+    host:'Highlands Stay Collective', verified:{property:true, photos:true, location:true, host:true},
+    verifiedDate:'03 Aug 2026',
+    ratingBreak:{cleanliness:4.9, location:4.9, accuracy:4.7, communication:4.8, value:4.7},
+  },
+  {
+    id:'malindi-old-town-studio', name:'Malindi Old Town Studio', cls:'regular', dest:'malindi',
+    price:3800, rating:4.3, reviews:76, guests:2, bedrooms:1, bathrooms:1,
+    amenities:['Wi-Fi','Fan cooling','Basic kitchen','Bathroom','Security'],
+    mealPlans:['room'],
+    tags:['solo','business'],
+    desc:'A compact studio in Malindi\u2019s historic quarter, close to the market and seafront promenade. Best suited to solo travellers and short stays.',
+    rules:['Check-in from 1pm, check-out by 10am','No guests beyond registered occupants'],
+    host:'Malindi Town Stays', verified:{property:false, photos:false, location:true, host:true},
+    verifiedDate:'—',
+    ratingBreak:{cleanliness:4.2, location:4.6, accuracy:4.2, communication:4.3, value:4.5},
+  },
+  {
+    id:'nyali-beach-apartment', name:'Nyali Beach Apartment', cls:'comfort', dest:'mombasa',
+    price:11000, rating:4.6, reviews:98, guests:4, bedrooms:2, bathrooms:2,
+    amenities:['Swimming pool','Wi-Fi','Kitchen','Air conditioning','Parking','Beach access','Balcony'],
+    mealPlans:['room','bb','hb'],
+    tags:['family','business'],
+    desc:'A breezy two-bedroom apartment in a gated Nyali compound, with a shared pool and a five-minute walk to the beach.',
+    rules:['Pool hours 6am\u201310pm','Check-in from 2pm, check-out by 11am'],
+    host:'Nyali Coastal Homes', verified:{property:true, photos:true, location:true, host:true},
+    verifiedDate:'21 Jul 2026',
+    ratingBreak:{cleanliness:4.7, location:4.8, accuracy:4.5, communication:4.6, value:4.5},
+  },
+];
+
+const ROOM_LABELS = ['Living Room','Master Bedroom','Kitchen','Exterior','Bathroom','Balcony'];
+
+/* Demo reviews shown on property pages */
+function demoReviewsFor(p){
+  const names = ['Sarah K.','James O.','Amina W.','David R. (UK)','Grace N.','Tom & Liz (USA)'];
+  return names.slice(0,3).map((n,i)=>({
+    name:n, date: todayPlus(-14*(i+1)),
+    text: [
+      'Exactly as described \u2014 the concierge team confirmed every detail before we arrived and check-in was seamless.',
+      'Lovely stay, host was responsive and the property matched the photos closely.',
+      'Comfortable and well located. Would book through Kenya Stay again for our next trip.'
+    ][i],
+    rating: [5,5,4][i],
+  }));
+}
+
+/* Broker demo leads (mutable — new trip requests get appended to "New") */
+const LEADS = [
+  {id:'KS-2026-000901', name:'Charlotte Bennett', from:'United Kingdom', dest:'Diani', status:'New', budget:'$1,500', dates:'10\u201317 Oct'},
+  {id:'KS-2026-000902', name:'Michael Otieno', from:'Nairobi', dest:'Naivasha', status:'New', budget:'KSh 40,000', dates:'21\u201323 Sep'},
+  {id:'KS-2026-000885', name:'Fatima Al-Sayed', from:'UAE', dest:'Mombasa', status:'Contacted', budget:'$900', dates:'02\u201306 Nov'},
+  {id:'KS-2026-000879', name:'Robert Meyer', from:'Germany', dest:'Maasai Mara', status:'Matched', budget:'€2,200', dates:'14\u201318 Sep'},
+  {id:'KS-2026-000861', name:'The Kariuki Family', from:'Nairobi', dest:'Watamu', status:'Proposal Sent', budget:'KSh 120,000', dates:'25\u201330 Dec'},
+  {id:'KS-2026-000850', name:'Jean-Paul Girard', from:'France', dest:'Nanyuki', status:'Awaiting Payment', budget:'€1,100', dates:'05\u201309 Sep'},
+  {id:'KS-2026-000844', name:'Lisa Anderson', from:'USA', dest:'Diani', status:'Booked', budget:'$2,800', dates:'18\u201325 Sep'},
+  {id:'KS-2026-000830', name:'Peter Njoroge', from:'Nairobi', dest:'Amboseli', status:'Completed', budget:'KSh 65,000', dates:'01\u201303 Aug'},
+  {id:'KS-2026-000811', name:'Emma Wilson', from:'Australia', dest:'Malindi', status:'Cancelled', budget:'$700', dates:'12\u201315 Jul'},
+];
+const LEAD_STATUSES = ['New','Contacted','Matched','Proposal Sent','Awaiting Payment','Booked','Completed','Cancelled'];
+
+/* ------------------------------ STATE ------------------------------------ */
+const state = {
+  view: 'home',
+  params: {},
+  currency: 'KES',
+  compare: [],           // property ids selected for comparison
+  filters: { dest:'all', cls:'all', minPrice:0, maxPrice:60000, guests:1, amenities:[] },
+  pkg: { nights:3, mealPlan:'bb', transfer:false, carRental:false, tours:[] },
+  lastBooking: null,
+};
+
+function navigate(view, params){
+  state.view = view;
+  state.params = params || {};
+  window.scrollTo({top:0, behavior:'instant'});
+  render();
+}
+
+function toast(msg){
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<span>${esc(msg)}</span>`;
+  document.body.appendChild(el);
+  setTimeout(()=> el.remove(), 3200);
+}
+
+/* ------------------------------ RENDER ENGINE ----------------------------- */
+function render(){
+  $app.innerHTML = header() + viewBody() + footer() + waFab();
+  window.scrollTo(0,0);
+}
+
+function viewBody(){
+  switch(state.view){
+    case 'home': return viewHome();
+    case 'search': return viewSearch();
+    case 'property': return viewProperty(state.params.id);
+    case 'compare': return viewCompare();
+    case 'request': return viewRequest();
+    case 'confirmation': return viewConfirmation();
+    case 'broker': return viewBroker();
+    case 'host': return viewHost();
+    default: return viewHome();
+  }
+}
+
+let mobileNavOpen = false;
+function header(){
+  const navItems = [
+    ['home','Home'], ['search','Search Stays'], ['request','Custom Trip'],
+    ['broker','Broker Dashboard'], ['host','Host Dashboard']
+  ];
+  return `
+  <header class="site-header">
+    <div class="wrap">
+      <div class="logo" data-action="nav" data-view="home">
+        <span class="logo-mark">Kenya Stay</span>
+      </div>
+      <nav class="main-nav">
+        ${navItems.map(([v,l])=>`<button data-action="nav" data-view="${v}" class="${state.view===v?'active':''}">${l}</button>`).join('')}
+      </nav>
+      <div class="header-right">
+        <select class="currency-select" id="currencySelect">
+          ${Object.keys(RATES).map(c=>`<option value="${c}" ${state.currency===c?'selected':''}>${c}</option>`).join('')}
+        </select>
+        <button class="btn btn-primary btn-sm hide-mobile-cta" data-action="nav" data-view="request">Get Concierge Help</button>
+        <button class="hamburger-btn" data-action="toggle-mobile-nav" aria-label="Menu">${mobileNavOpen? '✕' : '☰'}</button>
+      </div>
+    </div>
+    ${mobileNavOpen ? `
+    <div class="mobile-nav">
+      ${navItems.map(([v,l])=>`<button data-action="nav" data-view="${v}" class="${state.view===v?'active':''}">${l}</button>`).join('')}
+      <button data-action="nav" data-view="request" class="btn btn-primary btn-sm" style="margin-top:8px;">Get Concierge Help</button>
+    </div>` : ''}
+  </header>`;
+}
+
+function footer(){
+  return `
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="logo-mark" style="color:#fff;font-size:19px;">Kenya Stay</div>
+          <p style="margin-top:10px;max-width:260px;color:rgba(247,243,231,0.6);font-size:13px;">Find Your Stay. Experience Kenya. A concierge-led marketplace for verified holiday homes, apartments and villas across Kenya.</p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <a data-action="nav" data-view="search">Search stays</a>
+          <a data-action="nav" data-view="home">Destinations</a>
+          <a data-action="nav" data-view="request">Custom trip request</a>
+        </div>
+        <div>
+          <h5>Partners</h5>
+          <a data-action="nav" data-view="host">Host dashboard</a>
+          <a data-action="nav" data-view="broker">Broker dashboard</a>
+        </div>
+        <div>
+          <h5>Concierge</h5>
+          <a href="${waLink('Hi Kenya Stay, I\u2019d like help planning a trip.')}" target="_blank" rel="noopener">WhatsApp concierge (demo)</a>
+          <a href="tel:+254700000000">Call +254 700 000 000 (demo)</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>\u00A9 2026 Kenya Stay \u2014 prototype for demonstration. Prices, availability and reviews shown are illustrative demo data.</span>
+        <span>KES · USD · GBP · EUR</span>
+      </div>
+    </div>
+  </footer>`;
+}
+
+function waFab(){
+  const msg = `Hi Kenya Stay, I'd like help finding a stay${state.filters.dest!=='all' ? ' in '+state.filters.dest : ''}.`;
+  return `<a class="wa-fab" href="${waLink(msg)}" target="_blank" rel="noopener">
+    <span>💬</span> WhatsApp Concierge
+  </a>`;
+}
+
+/* ------------------------------ HOME VIEW --------------------------------- */
+function viewHome(){
+  return `
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow-tag"><span class="dot"></span>Verified stays · Personal concierge · Kenya-wide</div>
+          <h1>Your perfect Kenyan stay starts here.</h1>
+          <p class="sub">From affordable city apartments to private luxury villas, we help you find, compare and book the right stay anywhere in Kenya \u2014 with a real concierge behind every booking.</p>
+        </div>
+        <div class="hero-photo-stack">
+          <div class="photo-block" style="top:0;right:0;width:70%;height:62%;${gradStyle('diani',0)}"><span class="plabel">Diani Beachfront Villa</span><span class="demo-badge">DEMO IMAGE</span></div>
+          <div class="photo-block" style="bottom:0;left:0;width:55%;height:44%;${gradStyle('nairobi',1)}"><span class="plabel">Kilimani Apartment</span><span class="demo-badge">DEMO IMAGE</span></div>
+          <div class="photo-block" style="bottom:6%;right:4%;width:38%;height:32%;${gradStyle('mara',2)}"><span class="plabel">Maasai Mara Suite</span><span class="demo-badge">DEMO IMAGE</span></div>
+        </div>
+      </div>
+      <form class="search-card" id="heroSearchForm">
+        <div class="search-field">
+          <label>Where are you going?</label>
+          <select name="dest">
+            <option value="all">Anywhere in Kenya</option>
+            ${DESTINATIONS.map(d=>`<option value="${d.id}">${d.name}</option>`).join('')}
+          </select>
+        </div>
+        <div class="search-field">
+          <label>Check-in</label>
+          <input type="date" name="checkin" />
+        </div>
+        <div class="search-field">
+          <label>Check-out</label>
+          <input type="date" name="checkout" />
+        </div>
+        <div class="search-field">
+          <label>Guests</label>
+          <input type="number" min="1" name="guests" value="2" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search Stays</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Explore Kenya</h2><p class="sub">Ten handpicked regions, each with its own character \u2014 tap a destination to see verified stays.</p></div>
+      </div>
+      <div class="dest-scroll">
+        ${DESTINATIONS.map((d,i)=>`
+          <div class="dest-card" style="${gradStyle(d.id,i)}" data-action="go-dest" data-dest="${d.id}">
+            <span class="demo-badge">DEMO IMAGE</span>
+            <div class="dname">${d.name}</div>
+            <div class="dmeta">${d.props} verified stays · ${d.region}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Choose your class of stay</h2><p class="sub">Every property is graded honestly so you know exactly what to expect before you book.</p></div>
+      </div>
+      <div class="class-grid">
+        <div class="class-card regular">
+          <h3>Regular</h3>
+          <div class="tagline">For budget travellers, students, solo travellers and small families.</div>
+          <ul><li>Clean private room & bed</li><li>Wi-Fi</li><li>Basic kitchen</li><li>Bathroom</li><li>Security on-site</li></ul>
+          <div class="from-price">${money(3500)} <small>/ night, from</small></div>
+        </div>
+        <div class="class-card comfort">
+          <h3>Comfort</h3>
+          <div class="tagline">Modern comfort without luxury pricing.</div>
+          <ul><li>Modern interior & Smart TV</li><li>Wi-Fi & workspace</li><li>Full kitchen</li><li>Parking & security</li><li>Pool / A/C where available</li></ul>
+          <div class="from-price">${money(8500)} <small>/ night, from</small></div>
+        </div>
+        <div class="class-card premium">
+          <h3>Premium</h3>
+          <div class="tagline">For travellers who want it handled, beautifully.</div>
+          <ul><li>Luxury interiors & views</li><li>Private pool, chef on request</li><li>Daily housekeeping</li><li>Concierge & airport transfer</li><li>Dedicated security</li></ul>
+          <div class="from-price">${money(22000)} <small>/ night, from</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Featured stays</h2><p class="sub">A sample of verified properties across our current inventory.</p></div>
+      <button class="btn btn-outline btn-sm" data-action="nav" data-view="search">View all stays</button></div>
+      <div class="prop-grid">
+        ${PROPERTIES.slice(0,6).map(p=>propCard(p)).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head"><div><h2>How Kenya Stay works</h2></div></div>
+      <div class="steps-row">
+        ${[
+          ['Search','Tell us where, when and how many guests.'],
+          ['Compare','Browse verified photos, amenities and honest pricing.'],
+          ['Build your package','Add meals, transfers, tours \u2014 see the full price upfront.'],
+          ['Book with a concierge','Request to book; a real person confirms every detail.'],
+          ['Stay & review','Check in with confidence, then tell us how it went.'],
+        ].map(([t,d],i)=>`
+          <div class="step-item"><div class="step-num">0${i+1}</div><h4>${t}</h4><p>${d}</p></div>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="concierge-band">
+        <div>
+          <h2>Need help choosing?</h2>
+          <p>Talk to a Kenya Stay Concierge. Tell us your dates, budget and what matters most \u2014 we'll shortlist the right stay and handle the rest.</p>
+        </div>
+        <div class="concierge-actions">
+          <a class="btn btn-gold" href="${waLink('Hi Kenya Stay, I would like help planning my trip to Kenya.')}" target="_blank" rel="noopener">WhatsApp Concierge</a>
+          <a class="btn btn-outline-light" href="tel:+254700000000">Call Concierge</a>
+          <button class="btn btn-outline-light" data-action="nav" data-view="request">Request a Custom Stay</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  `;
+}
+function gradStyle(seed,i){ return `background:${gradFor(seed,i)};`; }
+
+/* ------------------------------ SHARED CARDS ------------------------------ */
+function propCard(p){
+  const d = DESTINATIONS.find(x=>x.id===p.dest);
+  const inCompare = state.compare.includes(p.id);
+  return `
+  <div class="prop-card" data-action="go-property" data-id="${p.id}">
+    <div class="prop-photo">
+      ${photoBlock(p.id,0,'')}
+      <div class="compare-check" data-action="toggle-compare" data-id="${p.id}">
+        <span class="custom-check ${inCompare?'checked':''}"></span> Compare
+      </div>
+    </div>
+    <div class="prop-body">
+      <div class="prop-top-row">
+        <div>
+          <div class="prop-name">${esc(p.name)}</div>
+          <div class="prop-loc">${d?d.name:''}, Kenya</div>
+        </div>
+        <div class="prop-rating">${p.rating.toFixed(1)} ★</div>
+      </div>
+      <span class="badge badge-class-${p.cls}">${p.cls[0].toUpperCase()+p.cls.slice(1)}</span>
+      ${p.verified.property ? '<span class="badge badge-verified">✓ Verified</span>' : ''}
+      <div class="prop-meta">
+        <span>${p.guests} guests</span><span>${p.bedrooms} bed</span><span>${p.bathrooms} bath</span>
+      </div>
+      <div class="prop-price-row">
+        <div class="prop-price">${money(p.price)} <small>/ night</small></div>
+        <span class="muted" style="font-size:12px;">${p.reviews} reviews</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ------------------------------ SEARCH VIEW -------------------------------- */
+function filteredProperties(){
+  const f = state.filters;
+  return PROPERTIES.filter(p=>{
+    if(f.dest!=='all' && p.dest!==f.dest) return false;
+    if(f.cls!=='all' && p.cls!==f.cls) return false;
+    if(p.price < f.minPrice || p.price > f.maxPrice) return false;
+    if(p.guests < f.guests) return false;
+    if(f.amenities.length && !f.amenities.every(a=>p.amenities.includes(a))) return false;
+    return true;
+  });
+}
+
+function viewSearch(){
+  const results = filteredProperties();
+  const allAmenities = ['Wi-Fi','Swimming pool','Beach access','Air conditioning','Kitchen','Parking','Workspace','Security'];
+  const f = state.filters;
+  return `
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Search stays</h2><p class="sub">${results.length} stay${results.length===1?'':'s'} match your filters. Prices shown are per night in ${state.currency}.</p></div>
+        ${state.compare.length>1 ? `<button class="btn btn-dark btn-sm" data-action="nav" data-view="compare">Compare ${state.compare.length} stays</button>` : ''}
+      </div>
+      <div class="search-layout">
+        <aside class="filter-panel">
+          <div class="filter-group">
+            <h4>Destination</h4>
+            <select class="select-basic" id="fDest">
+              <option value="all" ${f.dest==='all'?'selected':''}>All destinations</option>
+              ${DESTINATIONS.map(d=>`<option value="${d.id}" ${f.dest===d.id?'selected':''}>${d.name}</option>`).join('')}
+            </select>
+          </div>
+          <div class="filter-group">
+            <h4>Property class</h4>
+            <div class="filter-chip-row">
+              ${['all','regular','comfort','premium'].map(c=>`<span class="chip ${f.cls===c?'active':''}" data-action="set-filter" data-key="cls" data-val="${c}">${c==='all'?'All':c[0].toUpperCase()+c.slice(1)}</span>`).join('')}
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Price range (KES / night)</h4>
+            <div class="range-row">
+              <input type="number" id="fMin" value="${f.minPrice}" placeholder="Min" />
+              <input type="number" id="fMax" value="${f.maxPrice}" placeholder="Max" />
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Guests</h4>
+            <input type="number" min="1" class="select-basic" id="fGuests" value="${f.guests}" />
+          </div>
+          <div class="filter-group">
+            <h4>Amenities</h4>
+            ${allAmenities.map(a=>`
+              <label class="check-row"><input type="checkbox" data-action="toggle-amenity" data-val="${a}" ${f.amenities.includes(a)?'checked':''}/> ${a}</label>
+            `).join('')}
+          </div>
+          <button class="btn btn-outline btn-sm btn-block" data-action="reset-filters">Reset filters</button>
+        </aside>
+        <div>
+          ${results.length? `<div class="prop-grid">${results.map(p=>propCard(p)).join('')}</div>` : `<div class="center-empty">No stays match these filters yet \u2014 try widening your price range or clearing an amenity.</div>`}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewCompare(){
+  const items = PROPERTIES.filter(p=>state.compare.includes(p.id)).slice(0,4);
+  if(items.length<2) return `<section class="section-tight"><div class="wrap"><div class="center-empty">Select at least 2 stays from Search to compare them here.</div></div></section>`;
+  const rows = [
+    ['Price / night', p=>money(p.price)],
+    ['Class', p=>p.cls],
+    ['Bedrooms', p=>p.bedrooms],
+    ['Bathrooms', p=>p.bathrooms],
+    ['Guests', p=>p.guests],
+    ['Pool', p=>p.amenities.includes('Swimming pool')||p.amenities.includes('Private pool')?'✓':'✕'],
+    ['Wi-Fi', p=>p.amenities.includes('Wi-Fi')?'✓':'✕'],
+    ['Breakfast option', p=>p.mealPlans.includes('bb')?'✓':'✕'],
+    ['Beach access', p=>p.amenities.some(a=>a.toLowerCase().includes('beach'))?'✓':'✕'],
+    ['Rating', p=>p.rating.toFixed(1)],
+  ];
+  return `
+  <section class="section-tight"><div class="wrap">
+    <div class="section-head"><div><h2>Compare stays</h2><p class="sub">Comparing ${items.length} properties side by side.</p></div>
+    <button class="btn btn-outline btn-sm" data-action="nav" data-view="search">Back to search</button></div>
+    <div style="overflow-x:auto;">
+    <table class="table-simple" style="min-width:600px;">
+      <thead><tr><th>Feature</th>${items.map(p=>`<th>${esc(p.name)}</th>`).join('')}</tr></thead>
+      <tbody>
+        ${rows.map(([label,fn])=>`<tr><td style="font-weight:600;">${label}</td>${items.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('')}
+        <tr><td></td>${items.map(p=>`<td><button class="btn btn-primary btn-sm" data-action="go-property" data-id="${p.id}">View stay</button></td>`).join('')}</tr>
+      </tbody>
+    </table>
+    </div>
+  </div></section>`;
+}
+
+/* ------------------------------ PROPERTY DETAIL ---------------------------- */
+let activeTab = 'overview';
+
+function computePackage(p, pkg){
+  const nights = clamp(pkg.nights,1,60);
+  const base = p.price * nights;
+  let discountPct = 0;
+  if(nights>=30) discountPct = 0.20;
+  else if(nights>=7) discountPct = 0.10;
+  const discount = Math.round(base*discountPct);
+  const accommodation = base - discount;
+
+  const mealPlan = MEAL_PLAN_LIB[pkg.mealPlan];
+  const mealsCost = mealPlan.pppn * p.guests * nights;
+
+  const transferCost = pkg.transfer ? 3500*2 : 0;
+  const carRentalCost = pkg.carRental ? 6000 * nights : 0;
+  const toursCost = pkg.tours.reduce((sum,tid)=>{
+    const e = EXPERIENCES.find(x=>x.id===tid); return sum + (e?e.price:0);
+  },0);
+
+  const subtotal = accommodation + mealsCost + transferCost + carRentalCost + toursCost;
+  const brokerFee = Math.round(subtotal * 0.12);
+  const total = subtotal + brokerFee;
+
+  return {nights, base, discountPct, discount, accommodation, mealPlan, mealsCost, transferCost, carRentalCost, toursCost, subtotal, brokerFee, total};
+}
+
+function viewProperty(id){
+  const p = PROPERTIES.find(x=>x.id===id) || PROPERTIES[0];
+  const d = DESTINATIONS.find(x=>x.id===p.dest);
+  const calc = computePackage(p, state.pkg);
+  const availPlans = p.mealPlans.map(code=>MEAL_PLAN_LIB[code]);
+
+  return `
+  <section class="section-tight">
+    <div class="wrap">
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:14px;">
+        <a data-action="nav" data-view="home" style="cursor:pointer;">Home</a> /
+        <a data-action="nav" data-view="search" style="cursor:pointer;">Search</a> /
+        <span>${esc(p.name)}</span>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+        <div>
+          <h1 style="font-size:30px;">${esc(p.name)}</h1>
+          <div style="margin-top:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <span>${stars(p.rating)} <strong>${p.rating.toFixed(1)}</strong> (${p.reviews} reviews)</span>
+            <span class="muted">·</span>
+            <span class="muted">${d?d.name:''}, Kenya</span>
+            <span class="badge badge-class-${p.cls}">${p.cls[0].toUpperCase()+p.cls.slice(1)}</span>
+            ${p.verified.property? '<span class="badge badge-verified">✓ Property Verified</span>':''}
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-outline btn-sm" data-action="toggle-compare" data-id="${p.id}">${state.compare.includes(p.id)?'Remove from compare':'Add to compare'}</button>
+          <a class="btn btn-outline btn-sm" href="${mapsLink(p.name+' '+(d?d.name:''))}" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="main-shot">
+          ${photoBlock(p.id,0,'Living Room \u2014 4 Photos')}
+          <div class="view-all-photos" data-action="noop">6 rooms photographed</div>
+        </div>
+        <div class="side-shots">
+          <div class="ph" style="${gradStyle(p.id,1)}"><span class="demo-badge">DEMO IMAGE</span><span class="plabel">Master Bedroom \u2014 5</span></div>
+          <div class="ph" style="${gradStyle(p.id,2)}"><span class="demo-badge">DEMO IMAGE</span><span class="plabel">Exterior \u2014 6</span></div>
+        </div>
+      </div>
+
+      <div class="detail-layout">
+        <div>
+          <div class="tabbar">
+            ${['overview','amenities','meals','package','location','reviews','host'].map(t=>`
+              <button class="${activeTab===t?'active':''}" data-action="set-tab" data-tab="${t}">${tabLabel(t)}</button>
+            `).join('')}
+          </div>
+          <div id="tabContent">${renderTab(activeTab,p,calc,availPlans)}</div>
+        </div>
+
+        <aside class="booking-panel">
+          <div class="bp-price">${money(p.price)} <small>/ night</small></div>
+          <div style="font-size:12.5px;color:var(--ink-soft);margin:4px 0 16px;">${stars(p.rating)} ${p.rating.toFixed(1)} · ${p.reviews} reviews</div>
+
+          <label class="field-label">Nights</label>
+          <div class="stepper" style="margin-bottom:14px;">
+            <button data-action="pkg-nights" data-delta="-1">\u2212</button>
+            <span>${calc.nights} night${calc.nights===1?'':'s'}</span>
+            <button data-action="pkg-nights" data-delta="1">+</button>
+          </div>
+
+          <label class="field-label">Meal plan</label>
+          <select class="select-basic" id="pkgMealSelect" style="margin-bottom:14px;">
+            ${availPlans.map(mp=>`<option value="${mp.code}" ${state.pkg.mealPlan===mp.code?'selected':''}>${mp.name}</option>`).join('')}
+          </select>
+
+          <label class="check-row" style="margin-bottom:4px;">
+            <input type="checkbox" data-action="pkg-toggle" data-key="transfer" ${state.pkg.transfer?'checked':''}/> Airport transfer (return)
+          </label>
+          <label class="check-row" style="margin-bottom:10px;">
+            <input type="checkbox" data-action="pkg-toggle" data-key="carRental" ${state.pkg.carRental?'checked':''}/> Car rental with driver
+          </label>
+
+          <div class="hr-line" style="margin:14px 0;"></div>
+
+          <div class="bp-row"><span>${money(p.price)} × ${calc.nights} nights</span><span>${money(calc.base)}</span></div>
+          ${calc.discountPct>0?`<div class="bp-row"><span>Length-of-stay discount (${Math.round(calc.discountPct*100)}%)</span><span>\u2212${money(calc.discount)}</span></div>`:''}
+          <div class="bp-row"><span>Meals \u2014 ${calc.mealPlan.name}</span><span>${money(calc.mealsCost)}</span></div>
+          ${state.pkg.transfer?`<div class="bp-row"><span>Airport transfer</span><span>${money(calc.transferCost)}</span></div>`:''}
+          ${state.pkg.carRental?`<div class="bp-row"><span>Car rental (${calc.nights} days)</span><span>${money(calc.carRentalCost)}</span></div>`:''}
+          ${calc.toursCost>0?`<div class="bp-row"><span>Experiences added</span><span>${money(calc.toursCost)}</span></div>`:''}
+          <div class="bp-row"><span>Broker / concierge service fee (12%)</span><span>${money(calc.brokerFee)}</span></div>
+          <div class="bp-row total"><span>Total</span><span class="bp-total-price">${money(calc.total)}</span></div>
+
+          <button class="btn btn-primary btn-block" style="margin-top:16px;" data-action="open-booking">Request to Book</button>
+          <div class="disc-note">Broker commission and all fees shown transparently before you pay. No hidden charges.</div>
+        </aside>
+      </div>
+    </div>
+  </section>`;
+}
+
+function tabLabel(t){
+  return {overview:'Overview', amenities:'Amenities', meals:'Meal plans', package:'Build your package', location:'Location', reviews:'Reviews', host:'Host & broker'}[t];
+}
+
+function renderTab(tab,p,calc,availPlans){
+  if(tab==='overview'){
+    return `
+      <p style="font-size:15px;line-height:1.7;">${esc(p.desc)}</p>
+      <div class="verify-grid">
+        ${p.verified.property?'<div class="verify-item">✓ Property verified</div>':''}
+        ${p.verified.photos?'<div class="verify-item">✓ Photos verified</div>':''}
+        ${p.verified.location?'<div class="verify-item">✓ Location verified</div>':''}
+        ${p.verified.host?'<div class="verify-item">✓ Host verified</div>':''}
+      </div>
+      <div class="hr-line"></div>
+      <h4 style="margin-bottom:10px;">Sleeping arrangements</h4>
+      <p class="muted">${p.bedrooms} bedroom${p.bedrooms>1?'s':''} · ${p.bathrooms} bathroom${p.bathrooms>1?'s':''} · sleeps up to ${p.guests} guests</p>
+      <div class="hr-line"></div>
+      <h4 style="margin-bottom:10px;">House rules</h4>
+      <ul style="padding-left:18px;color:var(--ink-soft);font-size:13.5px;line-height:1.9;">
+        ${p.rules.map(r=>`<li>${esc(r)}</li>`).join('')}
+      </ul>
+    `;
+  }
+  if(tab==='amenities'){
+    return `<div class="amenity-grid">${p.amenities.map(a=>`<div class="amenity-item">· ${esc(a)}</div>`).join('')}</div>`;
+  }
+  if(tab==='meals'){
+    return `
+      ${Object.values(MEAL_PLAN_LIB).map(mp=>{
+        const offered = p.mealPlans.includes(mp.code);
+        return `<div class="radio-row" style="opacity:${offered?1:0.4};">
+          <span class="custom-radio ${state.pkg.mealPlan===mp.code&&offered?'checked':''}"></span>
+          <div style="flex:1;">
+            <div class="rname">${mp.name} ${offered?'':'<span class="muted" style="font-weight:400;">\u2014 not offered by this property</span>'}</div>
+            <div class="rdesc">${mp.desc}</div>
+          </div>
+          <div class="rprice">${mp.pppn? money(mp.pppn)+' /guest/night' : 'Included'}</div>
+        </div>`;
+      }).join('')}
+      <div class="disc-note">Meal availability is set by each host. Kenya Stay never claims a meal is included unless the property actually offers it.</div>
+    `;
+  }
+  if(tab==='package'){
+    return `
+      <h4 style="margin-bottom:14px;">Add local experiences</h4>
+      ${EXPERIENCES.map(e=>{
+        const checked = state.pkg.tours.includes(e.id);
+        return `<div class="radio-row" data-action="toggle-tour" data-id="${e.id}" style="cursor:pointer;">
+          <span class="custom-check ${checked?'checked':''}"></span>
+          <div style="flex:1;">
+            <div class="rname">${esc(e.name)}</div>
+            <div class="rdesc">${e.loc} · ${e.dur} · Provided by ${esc(e.provider)}</div>
+          </div>
+          <div class="rprice">${money(e.price)}</div>
+        </div>`;
+      }).join('')}
+      <div class="disc-note">Experience prices, duration and providers shown are demo listings. Cancellation terms are confirmed at booking.</div>
+      <div class="hr-line"></div>
+      <h4 style="margin-bottom:12px;">Package summary</h4>
+      <div class="bp-row"><span>Accommodation (${calc.nights} nights, after discount)</span><span>${money(calc.accommodation)}</span></div>
+      <div class="bp-row"><span>Meals \u2014 ${calc.mealPlan.name}</span><span>${money(calc.mealsCost)}</span></div>
+      <div class="bp-row"><span>Transfer & car rental</span><span>${money(calc.transferCost+calc.carRentalCost)}</span></div>
+      <div class="bp-row"><span>Experiences</span><span>${money(calc.toursCost)}</span></div>
+      <div class="bp-row total"><span>Total (incl. broker fee)</span><span class="bp-total-price">${money(calc.total)}</span></div>
+    `;
+  }
+  if(tab==='location'){
+    return `
+      <div class="map-box">
+        <div class="map-grid-lines"></div>
+        <div class="map-pin"></div>
+        <div style="position:relative;z-index:1;font-size:13px;color:var(--ink-soft);">Approximate location shown for privacy \u2014 exact address released after booking.</div>
+      </div>
+      <div style="margin-top:14px;"><a class="btn btn-outline btn-sm" href="${mapsLink(p.name+' '+(DESTINATIONS.find(x=>x.id===p.dest)||{}).name)}" target="_blank" rel="noopener">Get Directions</a></div>
+      <div class="hr-line"></div>
+      <h4 style="margin-bottom:10px;">Nearby (demo distances)</h4>
+      <div class="amenity-grid">
+        <div class="amenity-item">Airport \u2014 ~35 min drive</div>
+        <div class="amenity-item">Restaurants \u2014 within 1km</div>
+        <div class="amenity-item">Beach / attraction \u2014 nearby</div>
+        <div class="amenity-item">Hospital \u2014 ~15 min drive</div>
+      </div>
+    `;
+  }
+  if(tab==='reviews'){
+    const revs = demoReviewsFor(p);
+    const rb = p.ratingBreak;
+    return `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:'Fraunces',serif;font-size:38px;font-weight:650;">${p.rating.toFixed(1)}</div>
+          <div class="muted" style="font-size:13px;">${p.reviews} property reviews · broker service rated separately</div>
+        </div>
+        <div class="rating-bars">
+          ${Object.entries(rb).map(([k,v])=>`
+            <div class="rating-bar-row"><span style="width:110px;">${k[0].toUpperCase()+k.slice(1)}</span><div class="track"><div class="fill" style="width:${v/5*100}%;"></div></div><span>${v.toFixed(1)}</span></div>
+          `).join('')}
+        </div>
+      </div>
+      ${revs.map(r=>`
+        <div class="review-item">
+          <div class="review-head">
+            <div style="display:flex;align-items:center;gap:10px;"><span class="avatar-circ">${r.name[0]}</span><div><div style="font-weight:600;font-size:13.5px;">${esc(r.name)}</div><div class="muted" style="font-size:11.5px;">${r.date}</div></div></div>
+            <span>${'★'.repeat(r.rating)}</span>
+          </div>
+          <p style="font-size:13.5px;color:var(--ink-soft);">${esc(r.text)}</p>
+        </div>
+      `).join('')}
+    `;
+  }
+  if(tab==='host'){
+    return `
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <span class="avatar-circ" style="width:48px;height:48px;font-size:17px;">${p.host[0]}</span>
+        <div><div style="font-weight:650;font-size:16px;font-family:'Fraunces',serif;">${esc(p.host)}</div><div class="muted" style="font-size:12.5px;">Verified ${p.verified.host?'host':'listing'} · verified ${p.verifiedDate}</div></div>
+      </div>
+      <div class="hr-line"></div>
+      <h4 style="margin-bottom:10px;">Broker assistance</h4>
+      <p class="muted" style="font-size:13.5px;margin-bottom:14px;">Every booking on Kenya Stay is arranged with help from a personal concierge \u2014 from confirming availability with the host to organising airport pickup.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn btn-gold btn-sm" href="${waLink('Hi, I have a question about '+p.name+'.')}" target="_blank" rel="noopener">WhatsApp Concierge</a>
+        <button class="btn btn-outline btn-sm" data-action="nav" data-view="request">Request a Custom Stay</button>
+      </div>
+    `;
+  }
+  return '';
+}
+
+/* ------------------------------ TRIP REQUEST ------------------------------- */
+function viewRequest(){
+  return `
+  <section class="section-tight"><div class="wrap" style="max-width:760px;">
+    <h1 style="font-size:30px;">Request a custom stay</h1>
+    <p class="sub" style="margin-top:8px;margin-bottom:26px;">Tell us what you need and a Kenya Stay concierge will shortlist options and reply directly \u2014 usually within a few hours.</p>
+    <form id="tripRequestForm" class="panel">
+      <div class="form-grid">
+        <div class="form-field"><label>Destination</label>
+          <select name="destination"><option value="">Select a destination</option>${DESTINATIONS.map(d=>`<option>${d.name}</option>`).join('')}</select>
+        </div>
+        <div class="form-field"><label>Country of origin</label><input name="origin" placeholder="e.g. United Kingdom" required/></div>
+        <div class="form-field"><label>Arrival date</label><input type="date" name="arrival" required/></div>
+        <div class="form-field"><label>Departure date</label><input type="date" name="departure" required/></div>
+        <div class="form-field"><label>Adults</label><input type="number" name="adults" min="1" value="2" required/></div>
+        <div class="form-field"><label>Children</label><input type="number" name="children" min="0" value="0"/></div>
+        <div class="form-field"><label>Budget (total)</label><input name="budget" placeholder="e.g. $1,500 or KSh 150,000" required/></div>
+        <div class="form-field"><label>Accommodation class</label>
+          <select name="cls"><option value="regular">Regular</option><option value="comfort" selected>Comfort</option><option value="premium">Premium</option></select>
+        </div>
+        <div class="form-field"><label>Meals</label>
+          <select name="meals">${Object.values(MEAL_PLAN_LIB).map(m=>`<option value="${m.code}">${m.name}</option>`).join('')}</select>
+        </div>
+        <div class="form-field"><label>Transport needed</label>
+          <select name="transport"><option>None</option><option>Airport transfer only</option><option>Car rental with driver</option><option>Both</option></select>
+        </div>
+        <div class="form-field full"><label>Activities of interest</label><input name="activities" placeholder="e.g. Safari, beach excursion, cultural tour"/></div>
+        <div class="form-field"><label>Preferred communication</label>
+          <select name="comm"><option>WhatsApp</option><option>Email</option><option>Phone call</option></select>
+        </div>
+        <div class="form-field"><label>Your name</label><input name="name" required/></div>
+        <div class="form-field full"><label>Special requirements</label><textarea name="special" placeholder="Accessibility needs, celebrations, dietary requirements, pet-friendly, etc."></textarea></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top:20px;">Request My Stay</button>
+    </form>
+  </div></section>`;
+}
+
+function viewConfirmation(){
+  const b = state.lastBooking;
+  if(!b) return `<section class="section-tight"><div class="wrap"><div class="center-empty">No recent booking to show. <button class="btn btn-outline btn-sm" data-action="nav" data-view="search">Search stays</button></div></div></section>`;
+  return `
+  <section class="section-tight"><div class="wrap" style="max-width:760px;">
+    <h1 style="font-size:28px;margin-bottom:20px;">Booking request received</h1>
+    <div class="voucher">
+      <div class="voucher-head">
+        <div>
+          <div class="logo-mark" style="color:#fff;">Kenya Stay</div>
+          <div style="font-size:12px;color:rgba(247,243,231,0.7);margin-top:4px;">Digital booking voucher</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:var(--gold-2);text-transform:uppercase;letter-spacing:0.05em;">Booking reference</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;">${b.bookingId}</div>
+        </div>
+      </div>
+      <div class="voucher-body">
+        <div class="vfield"><div class="vlabel">Guest</div><div class="vval">${esc(b.guestName)}</div></div>
+        <div class="vfield"><div class="vlabel">Property</div><div class="vval">${esc(b.property.name)}</div></div>
+        <div class="vfield"><div class="vlabel">Check-in</div><div class="vval">${b.checkin}</div></div>
+        <div class="vfield"><div class="vlabel">Check-out</div><div class="vval">${b.checkout}</div></div>
+        <div class="vfield"><div class="vlabel">Guests</div><div class="vval">${b.property.guests}</div></div>
+        <div class="vfield"><div class="vlabel">Package</div><div class="vval">${b.calc.mealPlan.name}</div></div>
+        <div class="vfield"><div class="vlabel">Total</div><div class="vval">${money(b.calc.total)}</div></div>
+        <div class="vfield"><div class="vlabel">Payment status</div><div class="vval"><span class="status-pill status-pending">Pending \u2014 demo</span></div></div>
+        <div class="vfield full" style="grid-column:1/-1;display:flex;align-items:center;gap:16px;">
+          <div class="qr-demo"></div>
+          <div><div class="vlabel">Demo QR code</div><p class="muted" style="font-size:12.5px;">In production this would encode a verifiable check-in link. This prototype does not process real payments.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="disc-note" style="margin-top:18px;">This is a demo confirmation for prototype purposes only \u2014 no real payment has been taken and no real property has been booked.</div>
+    <div style="margin-top:18px;display:flex;gap:10px;">
+      <button class="btn btn-outline btn-sm" data-action="nav" data-view="search">Continue browsing</button>
+      <button class="btn btn-primary btn-sm" data-action="nav" data-view="home">Back to home</button>
+    </div>
+  </div></section>`;
+}
+
+/* ------------------------------ MODAL: BOOKING ------------------------------ */
+function openBookingModal(p, calc){
+  const html = `
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" data-action="close-modal">✕</button>
+      <h3 style="font-size:20px;margin-bottom:4px;">Request to book</h3>
+      <p class="muted" style="font-size:13px;margin-bottom:18px;">${esc(p.name)} \u2014 ${calc.nights} night${calc.nights===1?'':'s'} \u2014 ${money(calc.total)} total</p>
+      <form id="bookingForm">
+        <div class="form-grid">
+          <div class="form-field full"><label>Full name</label><input name="guestName" required/></div>
+          <div class="form-field"><label>Email</label><input type="email" name="email" required/></div>
+          <div class="form-field"><label>Phone (with country code)</label><input name="phone" required/></div>
+          <div class="form-field"><label>Payment method</label>
+            <select name="payment"><option>M-PESA</option><option>Card</option><option>Bank transfer</option><option>International payment provider</option></select>
+          </div>
+          <div class="form-field"><label>Number of guests</label><input type="number" min="1" max="${p.guests}" value="${p.guests}" name="guests"/></div>
+        </div>
+        <div class="disc-note">Payment is confirmed only via a verified provider callback in production \u2014 this prototype does not move real money.</div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px;">Confirm Booking Request</button>
+      </form>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+}
+function closeModal(){
+  const o = document.getElementById('modalOverlay');
+  if(o) o.remove();
+}
+
+/* ------------------------------ BROKER DASHBOARD --------------------------- */
+let brokerTab = 'today';
+const negotiation = { hostPrice: 10000, nights: 5, commissionPct: 15, extras: 0 };
+
+function viewBroker(){
+  return `
+  <div class="dash-shell">
+    <aside class="dash-side">
+      <div class="logo-mark" style="color:#fff;font-size:18px;">Broker Command Center</div>
+      <div class="dtitle">Overview</div>
+      <button class="${brokerTab==='today'?'active':''}" data-action="broker-tab" data-tab="today">Today</button>
+      <button class="${brokerTab==='leads'?'active':''}" data-action="broker-tab" data-tab="leads">Leads Pipeline</button>
+      <div class="dtitle">Tools</div>
+      <button class="${brokerTab==='matching'?'active':''}" data-action="broker-tab" data-tab="matching">Customer Matching</button>
+      <button class="${brokerTab==='negotiation'?'active':''}" data-action="broker-tab" data-tab="negotiation">Host Negotiation</button>
+      <div class="dtitle">Performance</div>
+      <button class="${brokerTab==='financial'?'active':''}" data-action="broker-tab" data-tab="financial">Financial Dashboard</button>
+      <button class="${brokerTab==='analytics'?'active':''}" data-action="broker-tab" data-tab="analytics">Analytics</button>
+    </aside>
+    <main class="dash-main">
+      ${brokerContent()}
+    </main>
+  </div>`;
+}
+
+function brokerContent(){
+  if(brokerTab==='today') return brokerToday();
+  if(brokerTab==='leads') return brokerLeads();
+  if(brokerTab==='matching') return brokerMatching();
+  if(brokerTab==='negotiation') return brokerNegotiation();
+  if(brokerTab==='financial') return brokerFinancial();
+  if(brokerTab==='analytics') return brokerAnalytics();
+  return '';
+}
+
+function brokerToday(){
+  const kpis = [
+    ['New inquiries', LEADS.filter(l=>l.status==='New').length, '+3 today'],
+    ['Active bookings', LEADS.filter(l=>['Booked'].includes(l.status)).length + 34, null],
+    ['Upcoming check-ins', 17, null],
+    ['Properties', PROPERTIES.length + 316, null],
+    ['Pending confirmations', 8, null],
+    ['Broker revenue (30d)', money(486500), null],
+  ];
+  return `
+  <h2 style="font-size:24px;margin-bottom:20px;">Today</h2>
+  <div class="kpi-grid">
+    ${kpis.map(([label,val,delta])=>`
+      <div class="kpi-card"><div class="kval">${val}</div><div class="klabel">${label}</div>${delta?`<div class="kdelta up">${delta}</div>`:''}</div>
+    `).join('')}
+  </div>
+  <div class="panel">
+    <h3>Recent trip requests</h3>
+    <p class="phint">Submitted through the Custom Trip Request form and the WhatsApp concierge.</p>
+    <table class="table-simple">
+      <thead><tr><th>Reference</th><th>Traveller</th><th>From</th><th>Destination</th><th>Dates</th><th>Budget</th><th>Status</th></tr></thead>
+      <tbody>
+        ${LEADS.slice(0,6).map(l=>`<tr><td>${l.id}</td><td>${esc(l.name)}</td><td>${esc(l.from)}</td><td>${esc(l.dest)}</td><td>${l.dates}</td><td>${l.budget}</td><td><span class="status-pill ${l.status==='Cancelled'?'status-pending':'status-active'}">${l.status}</span></td></tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+function brokerLeads(){
+  return `
+  <h2 style="font-size:24px;margin-bottom:6px;">Leads pipeline</h2>
+  <p class="phint" style="margin-bottom:20px;">Every trip request moves through this pipeline, from first contact to a completed stay.</p>
+  <div class="kanban">
+    ${LEAD_STATUSES.map(status=>{
+      const items = LEADS.filter(l=>l.status===status);
+      return `<div class="kan-col"><h5>${status} <span>${items.length}</span></h5>
+        ${items.map(l=>`<div class="kan-card"><div class="kname">${esc(l.name)}</div><div class="kmeta">${esc(l.dest)} · ${l.dates}</div><div class="kmeta">${l.budget} · ${esc(l.from)}</div></div>`).join('') || '<div class="kmeta" style="padding:8px 0;">No leads</div>'}
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function brokerMatching(){
+  const matches = [
+    {name:'Watamu Coral Cottage', score:96, reasons:['Within budget','Pool + Wi-Fi','Breakfast available','Beach access 500m']},
+    {name:'Nyali Beach Apartment', score:91, reasons:['Within budget','Pool available','Beach access nearby']},
+    {name:'Diani Beachfront Villa', score:74, reasons:['Above budget by 12%','Ocean-front match','Breakfast available']},
+  ];
+  return `
+  <h2 style="font-size:24px;margin-bottom:6px;">Customer \u2194 property matching</h2>
+  <p class="phint">Demo query: budget KSh 15,000/night · Diani area · 4 guests · 10\u201315 Oct · breakfast · pool + Wi-Fi + beach access preferred.</p>
+  <div class="panel">
+    ${matches.map(m=>`
+      <div class="match-card">
+        <div>
+          <div style="font-weight:650;font-family:'Fraunces',serif;font-size:16px;">${m.name}</div>
+          <ul class="match-reasons">${m.reasons.map(r=>`<li>${r}</li>`).join('')}</ul>
+        </div>
+        <div class="match-score">${m.score}%</div>
+      </div>
+    `).join('')}
+    <div class="disc-note">Matching logic shown here is illustrative demo output for the prototype, not a live scoring engine.</div>
+  </div>`;
+}
+
+function brokerNegotiation(){
+  const n = negotiation;
+  const hostTotal = n.hostPrice * n.nights;
+  const commission = Math.round(hostTotal * (n.commissionPct/100));
+  const customerPrice = hostTotal + commission + n.extras;
+  const earnings = commission;
+  return `
+  <h2 style="font-size:24px;margin-bottom:6px;">Host negotiation & commission calculator</h2>
+  <p class="phint">Adjust the terms to see the customer price and broker earnings update, before you present an offer.</p>
+  <div class="panel">
+    <div class="calc-grid">
+      <div>
+        <div class="form-field" style="margin-bottom:14px;"><label>Host price per night (KES)</label><input type="number" id="negHostPrice" value="${n.hostPrice}"/></div>
+        <div class="form-field" style="margin-bottom:14px;"><label>Nights</label><input type="number" id="negNights" value="${n.nights}"/></div>
+        <div class="form-field" style="margin-bottom:14px;"><label>Broker commission (%)</label><input type="number" id="negCommission" value="${n.commissionPct}"/></div>
+        <div class="form-field"><label>Additional services (KES)</label><input type="number" id="negExtras" value="${n.extras}"/></div>
+      </div>
+      <div>
+        <div class="calc-out-row"><span>Host price × nights</span><span class="v">${money(hostTotal)}</span></div>
+        <div class="calc-out-row"><span>Broker commission (${n.commissionPct}%)</span><span class="v">${money(commission)}</span></div>
+        <div class="calc-out-row"><span>Additional services</span><span class="v">${money(n.extras)}</span></div>
+        <div class="calc-out-row final"><span>Customer price</span><span class="v">${money(customerPrice)}</span></div>
+        <div class="calc-out-row final profit"><span>Broker earnings</span><span class="v">${money(earnings)}</span></div>
+      </div>
+    </div>
+    <div class="disc-note">All charges are disclosed to the customer in the package breakdown before payment \u2014 nothing is added silently.</div>
+  </div>`;
+}
+
+function brokerFinancial(){
+  const rows = [
+    ['Gross booking value', 3820000],
+    ['Broker commissions', 458400],
+    ['Service fees', 96200],
+    ['Experience commissions', 41300],
+    ['Transport commissions', 28700],
+    ['Refunds', -18500],
+  ];
+  const net = rows.slice(1).reduce((s,[,v])=>s+v,0);
+  const max = Math.max(...rows.map(r=>Math.abs(r[1])));
+  return `
+  <h2 style="font-size:24px;margin-bottom:6px;">Financial dashboard</h2>
+  <p class="phint">Trailing 30 days · demo figures.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kval">341</div><div class="klabel">Bookings</div></div>
+    <div class="kpi-card"><div class="kval">${money(3820000)}</div><div class="klabel">Gross booking value</div></div>
+    <div class="kpi-card"><div class="kval">${money(net)}</div><div class="klabel">Net broker earnings</div></div>
+  </div>
+  <div class="panel">
+    <h3>Revenue breakdown</h3>
+    <div class="bar-chart" style="margin-top:16px;">
+      ${rows.map(([label,val])=>`
+        <div class="bar-row"><span class="blabel">${label}</span><div class="btrack"><div class="bfill" style="width:${Math.abs(val)/max*100}%;background:${val<0?'var(--danger)':'var(--forest)'};"></div></div><span class="bval">${money(val)}</span></div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+function brokerAnalytics(){
+  const locs = [['Diani',412],['Nairobi',388],['Mombasa',301],['Watamu',210],['Maasai Mara',175],['Naivasha',140]];
+  const max = Math.max(...locs.map(l=>l[1]));
+  const intl = 62, local = 38;
+  return `
+  <h2 style="font-size:24px;margin-bottom:6px;">Analytics</h2>
+  <p class="phint">Demo aggregate figures for the prototype.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kval">${money(52400)}</div><div class="klabel">Average booking value</div></div>
+    <div class="kpi-card"><div class="kval">4.6</div><div class="klabel">Average stay length (nights)</div></div>
+    <div class="kpi-card"><div class="kval">31%</div><div class="klabel">Conversion rate</div></div>
+    <div class="kpi-card"><div class="kval">6.2%</div><div class="klabel">Cancellation rate</div></div>
+  </div>
+  <div class="panel">
+    <h3>Most searched destinations</h3>
+    <div class="bar-chart" style="margin-top:16px;">
+      ${locs.map(([l,v])=>`<div class="bar-row"><span class="blabel">${l}</span><div class="btrack"><div class="bfill" style="width:${v/max*100}%;"></div></div><span class="bval">${v} searches</span></div>`).join('')}
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Local vs international travellers</h3>
+    <div class="donut-wrap" style="margin-top:14px;">
+      <div class="donut" style="background:conic-gradient(var(--forest) 0 ${intl}%, var(--gold) ${intl}% 100%);"></div>
+      <div class="donut-legend">
+        <div><span class="legend-dot" style="background:var(--forest);"></span>International travellers \u2014 ${intl}%</div>
+        <div><span class="legend-dot" style="background:var(--gold);"></span>Local travellers \u2014 ${local}%</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ------------------------------ HOST DASHBOARD ------------------------------ */
+function viewHost(){
+  return `
+  <section class="section-tight"><div class="wrap">
+    <div class="section-head">
+      <div><h2>Host dashboard</h2><p class="sub">Manage your listings, availability and earnings.</p></div>
+      <button class="btn btn-primary btn-sm" data-action="open-add-property">Add property</button>
+    </div>
+    <div class="panel">
+      <table class="table-simple">
+        <thead><tr><th>Property</th><th>Class</th><th>Price / night</th><th>Status</th><th>Bookings</th><th>Earnings (30d)</th></tr></thead>
+        <tbody>
+          ${PROPERTIES.map(p=>`
+            <tr>
+              <td>${esc(p.name)}</td>
+              <td>${p.cls}</td>
+              <td>${money(p.price)}</td>
+              <td><span class="status-pill ${p.verified.property?'status-active':'status-pending'}">${p.verified.property?'Active · Verified':'Pending verification'}</span></td>
+              <td>${Math.round(p.reviews/3)}</td>
+              <td>${money(p.price * Math.round(p.reviews/3) * 3)}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h3>Availability calendar (demo)</h3>
+      <p class="phint">${todayPlus(0)} \u2014 illustrative month view.</p>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">
+        ${Array.from({length:30},(_,i)=>{
+          const booked = [3,4,5,12,13,20,21,22,27].includes(i+1);
+          return `<div style="padding:10px 0;text-align:center;border-radius:3px;font-size:12.5px;background:${booked?'var(--forest)':'var(--sand)'};color:${booked?'#fff':'var(--ink)'};">${i+1}</div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div></section>`;
+}
+
+function addPropertyModal(){
+  const html = `
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" data-action="close-modal">✕</button>
+      <h3 style="font-size:20px;margin-bottom:16px;">Add a property</h3>
+      <form id="addPropertyForm">
+        <div class="form-grid">
+          <div class="form-field full"><label>Property name</label><input name="name" required/></div>
+          <div class="form-field"><label>Destination</label><select name="dest">${DESTINATIONS.map(d=>`<option>${d.name}</option>`).join('')}</select></div>
+          <div class="form-field"><label>Class</label><select name="cls"><option>Regular</option><option>Comfort</option><option>Premium</option></select></div>
+          <div class="form-field"><label>Price / night (KES)</label><input type="number" name="price" required/></div>
+          <div class="form-field"><label>Guests</label><input type="number" name="guests" value="2"/></div>
+        </div>
+        <div class="disc-note">New listings enter as "Pending verification" until our team confirms photos, location and host identity.</div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px;">Submit for verification</button>
+      </form>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', html);
+}
+
+/* ------------------------------ EVENT DELEGATION ---------------------------- */
+document.addEventListener('click', function(e){
+  const t = e.target.closest('[data-action]');
+  if(!t) return;
+  const action = t.dataset.action;
+
+  if(action==='nav'){ mobileNavOpen = false; navigate(t.dataset.view); return; }
+  if(action==='toggle-mobile-nav'){ mobileNavOpen = !mobileNavOpen; render(); return; }
+  if(action==='go-property'){ navigate('property', {id:t.dataset.id}); return; }
+  if(action==='go-dest'){
+    state.filters.dest = t.dataset.dest;
+    navigate('search');
+    return;
+  }
+  if(action==='toggle-compare'){
+    e.stopPropagation();
+    const id = t.dataset.id;
+    const idx = state.compare.indexOf(id);
+    if(idx>-1) state.compare.splice(idx,1);
+    else { if(state.compare.length>=4){ toast('You can compare up to 4 stays at a time.'); return; } state.compare.push(id); }
+    render();
+    return;
+  }
+  if(action==='set-filter'){
+    state.filters[t.dataset.key] = t.dataset.val;
+    render(); return;
+  }
+  if(action==='reset-filters'){
+    state.filters = { dest:'all', cls:'all', minPrice:0, maxPrice:60000, guests:1, amenities:[] };
+    render(); return;
+  }
+  if(action==='toggle-amenity'){
+    // handled on change event below for checkboxes; ignore click on label wrapper
+    return;
+  }
+  if(action==='set-tab'){
+    activeTab = t.dataset.tab;
+    const p = PROPERTIES.find(x=>x.id===state.params.id) || PROPERTIES[0];
+    document.getElementById('tabContent').innerHTML = renderTab(activeTab, p, computePackage(p, state.pkg), p.mealPlans.map(c=>MEAL_PLAN_LIB[c]));
+    document.querySelectorAll('.tabbar button').forEach(b=> b.classList.toggle('active', b.dataset.tab===activeTab));
+    return;
+  }
+  if(action==='pkg-nights'){
+    state.pkg.nights = clamp(state.pkg.nights + parseInt(t.dataset.delta,10), 1, 60);
+    render(); return;
+  }
+  if(action==='pkg-toggle'){
+    // checkbox click bubbles here too; handled by change listener. no-op for the label click itself.
+    return;
+  }
+  if(action==='toggle-tour'){
+    const id = t.dataset.id;
+    const idx = state.pkg.tours.indexOf(id);
+    if(idx>-1) state.pkg.tours.splice(idx,1); else state.pkg.tours.push(id);
+    render(); return;
+  }
+  if(action==='open-booking'){
+    const p = PROPERTIES.find(x=>x.id===state.params.id) || PROPERTIES[0];
+    openBookingModal(p, computePackage(p, state.pkg));
+    return;
+  }
+  if(action==='close-modal'){ closeModal(); return; }
+  if(action==='broker-tab'){ brokerTab = t.dataset.tab; render(); return; }
+  if(action==='open-add-property'){ addPropertyModal(); return; }
+  if(action==='noop'){ return; }
+});
+
+// modal overlay backdrop click to close
+document.addEventListener('mousedown', function(e){
+  if(e.target.id === 'modalOverlay') closeModal();
+});
+
+document.addEventListener('change', function(e){
+  const el = e.target;
+
+  if(el.id === 'currencySelect'){ state.currency = el.value; render(); return; }
+
+  if(el.id === 'fDest'){ state.filters.dest = el.value; render(); return; }
+  if(el.id === 'fMin'){ state.filters.minPrice = Number(el.value)||0; render(); return; }
+  if(el.id === 'fMax'){ state.filters.maxPrice = Number(el.value)||99999999; render(); return; }
+  if(el.id === 'fGuests'){ state.filters.guests = Number(el.value)||1; render(); return; }
+  if(el.dataset && el.dataset.action==='toggle-amenity'){
+    const val = el.dataset.val;
+    const arr = state.filters.amenities;
+    const idx = arr.indexOf(val);
+    if(el.checked && idx===-1) arr.push(val);
+    if(!el.checked && idx>-1) arr.splice(idx,1);
+    render(); return;
+  }
+
+  if(el.id === 'pkgMealSelect'){ state.pkg.mealPlan = el.value; render(); return; }
+  if(el.dataset && el.dataset.action==='pkg-toggle'){
+    state.pkg[el.dataset.key] = el.checked; render(); return;
+  }
+
+  if(el.id === 'negHostPrice'){ negotiation.hostPrice = Number(el.value)||0; render(); return; }
+  if(el.id === 'negNights'){ negotiation.nights = Number(el.value)||1; render(); return; }
+  if(el.id === 'negCommission'){ negotiation.commissionPct = Number(el.value)||0; render(); return; }
+  if(el.id === 'negExtras'){ negotiation.extras = Number(el.value)||0; render(); return; }
+});
+
+document.addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = e.target;
+
+  if(form.id === 'heroSearchForm'){
+    const fd = new FormData(form);
+    state.filters.dest = fd.get('dest') || 'all';
+    state.filters.guests = Number(fd.get('guests'))||1;
+    navigate('search');
+    return;
+  }
+
+  if(form.id === 'tripRequestForm'){
+    const fd = new FormData(form);
+    const ref = `KS-2026-${Math.floor(100000+Math.random()*899999)}`;
+    LEADS.unshift({
+      id: ref, name: fd.get('name')||'Guest', from: fd.get('origin')||'\u2014',
+      dest: fd.get('destination')||'\u2014', status:'New',
+      budget: fd.get('budget')||'\u2014',
+      dates: `${fd.get('arrival')||'?'} \u2192 ${fd.get('departure')||'?'}`,
+    });
+    navigate('home');
+    toast(`Trip request submitted \u2014 reference ${ref}. Our concierge will be in touch.`);
+    return;
+  }
+
+  if(form.id === 'bookingForm'){
+    const fd = new FormData(form);
+    const p = PROPERTIES.find(x=>x.id===state.params.id) || PROPERTIES[0];
+    const calc = computePackage(p, state.pkg);
+    state.lastBooking = {
+      bookingId: `KS-2026-${Math.floor(100000+Math.random()*899999)}`,
+      guestName: fd.get('guestName') || 'Guest',
+      property: p, calc,
+      checkin: todayPlus(14),
+      checkout: todayPlus(14 + calc.nights),
+    };
+    closeModal();
+    navigate('confirmation');
+    return;
+  }
+
+  if(form.id === 'addPropertyForm'){
+    closeModal();
+    toast('Property submitted \u2014 our team will verify photos, location and host identity before it goes live.');
+    return;
+  }
+});
+
+/* ------------------------------ INIT ----------------------------------------- */
+render();
+
+</script>
+</body>
+</html>
